@@ -1,0 +1,5 @@
+EXPLAIN QUERY PLAN
+SELECT * FROM appointment_slot WHERE clinicId = 1;
+
+EXPLAIN QUERY PLAN
+SELECT * FROM reservation WHERE status = 'PENDING' AND expiresAt < datetime('now');
