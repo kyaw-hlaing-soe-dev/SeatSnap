@@ -12,7 +12,8 @@ const syne = Syne({
 const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-newsreader",
-  display: "swap"
+  display: "swap",
+  adjustFontFallback: false
 });
 
 const jetbrains = JetBrains_Mono({

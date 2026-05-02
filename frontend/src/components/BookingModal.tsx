@@ -66,14 +66,16 @@ export function BookingModal() {
       await reserveMutation.mutateAsync({ slotId: slot.id, userId: data.userId });
       setView("reserved");
     } catch (error) {
-      const err = error as AxiosError & { validationErrors?: Record<string, string> };
+      const err = error as AxiosError<{ message?: string }> & {
+        validationErrors?: Record<string, string>;
+      };
       if (err.validationErrors) {
         Object.entries(err.validationErrors).forEach(([field, message]) => {
           form.setError(field as keyof BookingForm, { message });
         });
         return;
       }
-      const message = err.response?.data?.message ?? "Reservation failed";
+      const message = err.response?.data?.message ?? err.message ?? "Reservation failed";
       toast.error(message);
     }
   };
